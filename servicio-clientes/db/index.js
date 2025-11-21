@@ -1,15 +1,17 @@
-// Importar el "conector" de Postgres
 const { Pool } = require('pg');
-
-// Importar y configurar dotenv para leer el archivo .env
 require('dotenv').config();
 
-// Crear un "pool" de conexiones.
+// Configuración para Nube (Railway) vs Local
 const pool = new Pool({
-    connectionString: process.env.DATABASE_URL,
+  connectionString: process.env.DATABASE_URL,
+  ssl: process.env.RAILWAY_ENVIRONMENT ? { rejectUnauthorized: false } : false
 });
 
-// Exportamos una función para hacer consultas
+// Si no hay connection string, avisar del error en consola
+if (!process.env.DATABASE_URL) {
+    console.error("ERROR FATAL: No existe la variable DATABASE_URL. El sistema intentará conectarse a localhost y fallará.");
+}
+
 module.exports = {
-    query: (text, params) => pool.query(text, params),
+  query: (text, params) => pool.query(text, params),
 };
