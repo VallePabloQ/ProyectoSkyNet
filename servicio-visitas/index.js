@@ -11,15 +11,19 @@ const PORT = 3003;
 app.use(express.json());
 app.use(cors());
 
-// --- CONFIGURACIÓN DEL CORREO ---
+// --- CONFIGURACIÓN DEL CORREO ROBUSTA ---
 const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host: "smtp.gmail.com", // Servidor explícito
+    port: 465,              // Puerto seguro SSL (menos propenso a timeouts)
+    secure: true,           // Usar SSL
     auth: {
-        user: process.env.NODEMAILER_USER, 
+        user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS
-    }
+    },
+    connectionTimeout: 10000, // Esperar máximo 10 segundos
+    greetingTimeout: 5000,    // Esperar máximo 5 seg al saludo
+    socketTimeout: 10000      // Si no hay datos, cerrar
 });
-
 // Middleware de seguridad
 const verificarToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
