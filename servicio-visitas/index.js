@@ -11,21 +11,17 @@ const PORT = 3003;
 app.use(express.json());
 app.use(cors());
 
-// --- CONFIGURACIÓN ANTI-TIMEOUT ---
+console.log("Intentando enviar correo desde:", process.env.NODEMAILER_USER);
+// --- ÚLTIMO INTENTO DE CONFIGURACIÓN ---
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com",
-    port: 587,              // Usamos 587 (TLS) en lugar de 465
-    secure: false,          // false para 587 (true es solo para 465)
+    service: 'gmail', // Volvemos al servicio automático
     auth: {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS
     },
     tls: {
-        // Esto evita errores si el certificado de seguridad varía
-        rejectUnauthorized: false 
-    },
-    // ESTA ES LA CLAVE DEL ÉXITO:
-    family: 4               // Forzamos a usar IPv4 para evitar el limbo de IPv6
+        rejectUnauthorized: false
+    }
 });
 
 // Middleware de seguridad
