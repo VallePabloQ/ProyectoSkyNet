@@ -3,7 +3,7 @@ import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-import MapaUbicacionOSM from './MapaUbicacionOSM';
+import MapaUbicacionOSM from './components/MapaUbicacionOSM';
 
 function Visitas() {
     const navigate = useNavigate();

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 //import SelectorMapaGoogle from './SelectorMapaGoogle';
-import SelectorMapaOSM from './SelectorMapaOSM';
+import SelectorMapaOSM from './components/SelectorMapaOSM';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
