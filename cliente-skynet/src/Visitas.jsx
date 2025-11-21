@@ -327,7 +327,7 @@ function Visitas() {
                                         
                                         {/* Botón Link Externo */}
                                         <a 
-                                            href={`https://www.google.com/maps?q=${visita.latitud},${visita.longitud}`} 
+                                            href={`https://www.google.com/maps/dir/?api=1&destination=${visita.latitud},${visita.longitud}&travelmode=driving`}
                                             target="_blank" 
                                             rel="noopener noreferrer" 
                                             className="btn btn-outline-primary w-100 mb-2"
