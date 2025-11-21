@@ -11,19 +11,23 @@ const PORT = 3003;
 app.use(express.json());
 app.use(cors());
 
-// --- CONFIGURACIÓN DEL CORREO ROBUSTA ---
+// --- CONFIGURACIÓN ANTI-TIMEOUT ---
 const transporter = nodemailer.createTransport({
-    host: "smtp.gmail.com", // Servidor explícito
-    port: 465,              // Puerto seguro SSL (menos propenso a timeouts)
-    secure: true,           // Usar SSL
+    host: "smtp.gmail.com",
+    port: 587,              // Usamos 587 (TLS) en lugar de 465
+    secure: false,          // false para 587 (true es solo para 465)
     auth: {
         user: process.env.NODEMAILER_USER,
         pass: process.env.NODEMAILER_PASS
     },
-    connectionTimeout: 10000, // Esperar máximo 10 segundos
-    greetingTimeout: 5000,    // Esperar máximo 5 seg al saludo
-    socketTimeout: 10000      // Si no hay datos, cerrar
+    tls: {
+        // Esto evita errores si el certificado de seguridad varía
+        rejectUnauthorized: false 
+    },
+    // ESTA ES LA CLAVE DEL ÉXITO:
+    family: 4               // Forzamos a usar IPv4 para evitar el limbo de IPv6
 });
+
 // Middleware de seguridad
 const verificarToken = (req, res, next) => {
     const authHeader = req.headers['authorization'];
