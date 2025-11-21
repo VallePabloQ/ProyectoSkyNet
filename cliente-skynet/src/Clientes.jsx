@@ -61,15 +61,19 @@ function Clientes() {
     // --- EDITAR ---
     const handleEditar = (cliente) => {
         setEditandoId(cliente.id_cliente);
+        
+        // Corrección: Aseguramos que sean números válidos o usamos el default
+        const lat = cliente.latitud ? parseFloat(cliente.latitud) : 14.6349;
+        const lng = cliente.longitud ? parseFloat(cliente.longitud) : -90.5069;
+
         setNuevoCliente({
             nombre_empresa: cliente.nombre_empresa,
             contacto_nombre: cliente.contacto_nombre,
             contacto_email: cliente.contacto_email,
             telefono: cliente.telefono,
             direccion_texto: cliente.direccion_texto,
-            
-            latitud: cliente.latitud ? parseFloat(cliente.latitud) : 14.6349, 
-            longitud: cliente.longitud ? parseFloat(cliente.longitud) : -90.5069
+            latitud: lat,
+            longitud: lng
         });
         setMostrarFormulario(true);
         window.scrollTo(0, 0);
@@ -102,13 +106,7 @@ function Clientes() {
                 alert('¡Cliente creado exitosamente!');
             }
 
-            // Limpieza
-            setMostrarFormulario(false);
-            setEditandoId(null); // Salimos del modo edición
-            setNuevoCliente({
-                nombre_empresa: '', contacto_nombre: '', contacto_email: '',
-                telefono: '', direccion_texto: '', latitud: '', longitud: ''
-            });
+            cancelarFormulario();
             cargarClientes(); 
         } catch (error) {
             console.error(error);
@@ -135,7 +133,7 @@ function Clientes() {
         setEditandoId(null);
         setNuevoCliente({
             nombre_empresa: '', contacto_nombre: '', contacto_email: '',
-            telefono: '', direccion_texto: '', latitud: '', longitud: ''
+            telefono: '', direccion_texto: '', latitud: 14.6349, longitud: -90.5069
         });
     };
 
@@ -182,25 +180,30 @@ function Clientes() {
                                 <input type="text" name="direccion_texto" className="form-control" required onChange={handleInputChange} value={nuevoCliente.direccion_texto}/>
                             </div>
                             
-                            <div className="mb-3">
+                            {/* --- AQUÍ ESTÁ LA CORRECCIÓN PRINCIPAL --- */}
+                            <div className="col-12 mb-3">
                                 <label className="form-label fw-bold text-primary">📍 Ubicación GPS (Arrastra el marcador):</label>
                                 
                                 <SelectorMapaOSM 
-                                    latitud={latitud}
-                                    longitud={longitud}
-                                    setLatitud={setLatitud}
-                                    setLongitud={setLongitud}
+                                    // Usamos nuevoCliente.latitud, NO la variable suelta
+                                    latitud={nuevoCliente.latitud}
+                                    longitud={nuevoCliente.longitud}
+                                    // Usamos funciones flecha para actualizar el estado del objeto
+                                    setLatitud={(val) => setNuevoCliente(prev => ({...prev, latitud: val}))}
+                                    setLongitud={(val) => setNuevoCliente(prev => ({...prev, longitud: val}))}
                                 />
 
                                 <div className="row mt-2">
                                     <div className="col">
-                                        <input type="text" className="form-control form-control-sm" value={latitud} readOnly placeholder="Latitud" />
+                                        <input type="text" className="form-control form-control-sm" value={nuevoCliente.latitud} readOnly placeholder="Latitud" />
                                     </div>
                                     <div className="col">
-                                        <input type="text" className="form-control form-control-sm" value={longitud} readOnly placeholder="Longitud" />
+                                        <input type="text" className="form-control form-control-sm" value={nuevoCliente.longitud} readOnly placeholder="Longitud" />
                                     </div>
                                 </div>
                             </div>
+                            {/* --------------------------------------- */}
+
                         </div>
                         <button type="submit" className={`btn w-100 ${editandoId ? 'btn-warning' : 'btn-primary'}`}>
                             {editandoId ? 'Actualizar Datos' : 'Guardar Cliente'}
@@ -231,13 +234,13 @@ function Clientes() {
                                     <td>
                                         <button 
                                             className="btn btn-sm btn-primary me-2"
-                                            onClick={() => handleEditar(cliente)} // <--- CONECTADO
+                                            onClick={() => handleEditar(cliente)}
                                         >
                                             ✏️ Editar
                                         </button>
                                         <button 
                                             className="btn btn-sm btn-danger"
-                                            onClick={() => handleBorrar(cliente.id_cliente)} // <--- CONECTADO
+                                            onClick={() => handleBorrar(cliente.id_cliente)}
                                         >
                                             🗑️ Borrar
                                         </button>
