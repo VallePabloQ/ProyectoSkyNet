@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-import SelectorMapaGoogle from './SelectorMapaGoogle';
+//import SelectorMapaGoogle from './SelectorMapaGoogle';
+import SelectorMapaOSM from './components/SelectorMapaOSM';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
 
@@ -180,13 +181,24 @@ function Clientes() {
                                 <input type="text" name="direccion_texto" className="form-control" required onChange={handleInputChange} value={nuevoCliente.direccion_texto}/>
                             </div>
                             
-                            <div className="col-12 mb-3">
-                                <label className="fw-bold text-primary mb-2">📍 Ubicación GPS (Modificar en el mapa si es necesario):</label>
-                                <SelectorMapaGoogle 
-                                    setLat={(val) => setNuevoCliente(prev => ({...prev, latitud: val}))}
-                                    setLng={(val) => setNuevoCliente(prev => ({...prev, longitud: val}))}
+                            <div className="mb-3">
+                                <label className="form-label fw-bold text-primary">📍 Ubicación GPS (Arrastra el marcador):</label>
+                                
+                                <SelectorMapaOSM 
+                                    latitud={latitud}
+                                    longitud={longitud}
+                                    setLatitud={setLatitud}
+                                    setLongitud={setLongitud}
                                 />
-                                {editandoId && <small className="text-muted">Nota: El pin se centrará en la nueva ubicación al hacer clic.</small>}
+
+                                <div className="row mt-2">
+                                    <div className="col">
+                                        <input type="text" className="form-control form-control-sm" value={latitud} readOnly placeholder="Latitud" />
+                                    </div>
+                                    <div className="col">
+                                        <input type="text" className="form-control form-control-sm" value={longitud} readOnly placeholder="Longitud" />
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <button type="submit" className={`btn w-100 ${editandoId ? 'btn-warning' : 'btn-primary'}`}>
