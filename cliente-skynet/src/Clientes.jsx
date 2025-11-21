@@ -20,8 +20,8 @@ function Clientes() {
         contacto_email: '',
         telefono: '',
         direccion_texto: '',
-        latitud: '',
-        longitud: ''
+        latitud: 14.6349,
+        longitud: -90.5069
     });
 
     useEffect(() => {
@@ -58,20 +58,21 @@ function Clientes() {
         }
     };
 
-    // --- FUNCIÓN EDITAR (PREPARAR FORMULARIO) ---
+    // --- EDITAR ---
     const handleEditar = (cliente) => {
-        setEditandoId(cliente.id_cliente); // Guardamos el ID que estamos editando
+        setEditandoId(cliente.id_cliente);
         setNuevoCliente({
             nombre_empresa: cliente.nombre_empresa,
             contacto_nombre: cliente.contacto_nombre,
             contacto_email: cliente.contacto_email,
             telefono: cliente.telefono,
             direccion_texto: cliente.direccion_texto,
-            latitud: parseFloat(cliente.latitud), // Aseguramos que sean números
-            longitud: parseFloat(cliente.longitud)
+            
+            latitud: cliente.latitud ? parseFloat(cliente.latitud) : 14.6349, 
+            longitud: cliente.longitud ? parseFloat(cliente.longitud) : -90.5069
         });
-        setMostrarFormulario(true); // Abrimos el formulario
-        window.scrollTo(0, 0); // Subimos la pantalla para que vea el form
+        setMostrarFormulario(true);
+        window.scrollTo(0, 0);
     };
 
     const handleInputChange = (e) => {

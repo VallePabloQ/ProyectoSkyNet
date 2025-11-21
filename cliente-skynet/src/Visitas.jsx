@@ -82,7 +82,7 @@ function Visitas() {
     // --- CARGAS DE DATOS (API) ---
     const cargarTableroSupervisor = async (token) => {
         try {
-            const res = await axios.get('https://servicio-visitas-production.up.railway.app/api/tablero-supervisor', { headers: { Authorization: `Bearer ${token}` } });
+            const res = await axios.get('https://visitas-19-26373.up.railway.app/api/tablero-supervisor', { headers: { Authorization: `Bearer ${token}` } });
             setTableroSupervisor(res.data);
         } catch (error) { console.error("Error tablero"); }
     };
@@ -90,17 +90,17 @@ function Visitas() {
     const cargarListasParaFormulario = async (token) => {
         try {
             // Cargar Clientes
-            const resC = await axios.get('https://servicio-clientes-production.up.railway.app/api/clientes', { headers: { Authorization: `Bearer ${token}` } });
+            const resC = await axios.get('https://clientes-19-26373.up.railway.app/api/clientes', { headers: { Authorization: `Bearer ${token}` } });
             setListaClientes(resC.data);
             // Cargar Técnicos
-            const resU = await axios.get('https://servicio-usuarios-production.up.railway.app/api/usuarios');
+            const resU = await axios.get('https://usuarios-19-26373.up.railway.app/api/usuarios');
             setListaTecnicos(resU.data.filter(u => u.id_rol == 3));
         } catch (error) { console.error("Error listas"); }
     };
 
     const cargarMisVisitas = async (token) => {
         try {
-            const res = await axios.get('https://servicio-visitas-production.up.railway.app/api/mis-visitas', { headers: { Authorization: `Bearer ${token}` } });
+            const res = await axios.get('https://visitas-19-26373.up.railway.app/api/mis-visitas', { headers: { Authorization: `Bearer ${token}` } });
             setVisitas(res.data);
         } catch (error) { console.error(error); }
     };
@@ -136,7 +136,7 @@ function Visitas() {
         try {
             const token = localStorage.getItem('token');
             // Enviamos lat/long al backend
-            await axios.put(`https://servicio-visitas-production.up.railway.app/api/visitas/${idVisitaCheckIn}/checkin`, 
+            await axios.put(`https://visitas-19-26373.up.railway.app/api/visitas/${idVisitaCheckIn}/checkin`, 
                 { latitud: ubicacionDetectada.lat, longitud: ubicacionDetectada.lon }, 
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -155,7 +155,7 @@ function Visitas() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`https://servicio-visitas-production.up.railway.app/api/visitas/${visitaActiva}/checkout`, 
+            await axios.put(`https://visitas-19-26373.up.railway.app/api/visitas/${visitaActiva}/checkout`, 
                 { reporte_visita: reporte }, 
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -170,7 +170,7 @@ function Visitas() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.post('https://servicio-visitas-production.up.railway.app/api/visitas', 
+            await axios.post('https://visitas-19-26373.up.railway.app/api/visitas', 
                 { id_cliente: idCliente, id_tecnico: idTecnico, fecha_planificada: fecha }, 
                 { headers: { Authorization: `Bearer ${token}` } }
             );
