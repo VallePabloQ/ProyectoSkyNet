@@ -130,3 +130,5 @@ app.put('/api/clientes/:id', verificarToken, async (req, res) => {
 app.listen(PORT, () => {
     console.log(`Servicio de Clientes corriendo en el puerto ${PORT}`);
 });
+
+// Actualización forzada para Railway
