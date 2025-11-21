@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <g transform="translate(20, 20) scale(0.3)">
+    <rect width="512" height="512" fill="#2563eb" rx="100"/>
+    <path fill="#ffffff" d="M150 200h212v112H150z"/>
+    <rect x="180" y="230" width="40" height="40" fill="#2563eb"/>
+    <rect x="292" y="230" width="40" height="40" fill="#2563eb"/>
+    <path fill="#ffffff" d="M256 120 L256 200" stroke="#ffffff" stroke-width="20"/>
+    <circle cx="256" cy="110" r="30" fill="#ef4444"/>
+  </g>
+  
+  <text x="200" y="130" font-family="Arial, sans-serif" font-weight="bold" font-size="120" fill="#ffffff">Sky</text>
+  <text x="410" y="130" font-family="Arial, sans-serif" font-weight="bold" font-size="120" fill="#3b82f6">Net</text>
+  <circle cx="650" cy="90" r="15" fill="#ef4444"/>
+</svg>

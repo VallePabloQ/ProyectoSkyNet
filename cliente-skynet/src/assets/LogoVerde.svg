@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <g transform="translate(20, 20) scale(0.3)">
+      <rect width="512" height="512" fill="#10b981" rx="80"/>
+      <rect x="156" y="156" width="200" height="200" fill="#111827"/>
+      <circle cx="256" cy="256" r="50" fill="#10b981"/>
+  </g>
+  
+  <text x="200" y="135" font-family="Courier New, monospace" font-weight="bold" font-size="110" fill="#10b981">&lt;Sky</text>
+  <text x="480" y="135" font-family="Courier New, monospace" font-weight="bold" font-size="110" fill="#ffffff">Net/&gt;</text>
+</svg>

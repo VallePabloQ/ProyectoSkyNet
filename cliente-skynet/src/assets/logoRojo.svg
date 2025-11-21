@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 200">
+  <g transform="translate(10, 10) scale(0.35)">
+    <circle cx="256" cy="256" r="256" fill="#b91c1c"/>
+    <path fill="none" stroke="#ffffff" stroke-width="30" d="M256 50 L420 120 L420 250 Q256 450 92 250 L92 120 Z"/>
+    <text x="170" y="360" font-family="Arial, sans-serif" font-weight="bold" font-size="280" fill="#ffffff">S</text>
+  </g>
+  
+  <text x="210" y="140" font-family="Verdana, sans-serif" font-weight="bold" font-size="100" fill="#ffffff">SKY</text>
+  <text x="440" y="140" font-family="Verdana, sans-serif" font-weight="normal" font-size="100" fill="#f87171">NET</text>
+  <rect x="210" y="155" width="450" height="10" fill="#b91c1c"/>
+</svg>
