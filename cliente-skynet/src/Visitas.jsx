@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
-
-// Librerías de PDF
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
-
-// IMPORTAMOS EL NUEVO MAPA DE OPENSTREETMAP
-// Asegúrate de que creaste el archivo en la carpeta "components"
-import MapaUbicacionOSM from './components/MapaUbicacionOSM';
+import MapaUbicacionOSM from './MapaUbicacionOSM';
 
 function Visitas() {
     const navigate = useNavigate();
