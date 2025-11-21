@@ -11,13 +11,12 @@ const PORT = 3003;
 app.use(express.json());
 app.use(cors());
 
-// --- CONFIGURACIÓN DEL CORREO (Revisa tus credenciales) ---
+// --- CONFIGURACIÓN DEL CORREO ---
 const transporter = nodemailer.createTransport({
     service: 'gmail',
     auth: {
-        // REEMPLAZA ESTO CON TUS DATOS REALES O USA VARIABLES DE ENTORNO
-        user: 'pablitovalle00@gmail.com',
-        pass: 'zuau gjwk juzu qbfq'     
+        user: process.env.NODEMAILER_USER, 
+        pass: process.env.NODEMAILER_PASS
     }
 });
 
