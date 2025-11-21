@@ -64,8 +64,7 @@ function Dashboard() {
         <div className="alert alert-info shadow-sm">
           <h4>¡Bienvenido al Panel de Control!</h4>
           <p className="mb-0">
-            Estás conectado como: <strong>{getRolName(usuario.id_rol)}</strong>. 
-            Tus opciones están limitadas según tu perfil.
+            Estás conectado como: <strong>{getRolName(usuario.id_rol)}</strong>.
           </p>
         </div>
 
