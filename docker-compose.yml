@@ -1,0 +1,36 @@
+version: '3.8'
+services:
+  db:
+    image: postgres:13
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: skynet_db
+    ports:
+      - "5432:5432"
+
+  servicio-usuarios:
+    build: ./servicio-usuarios
+    ports:
+      - "3002:3002"
+    depends_on:
+      - db
+
+  servicio-clientes:
+    build: ./servicio-clientes
+    ports:
+      - "3001:3001"
+    depends_on:
+      - db
+
+  servicio-visitas:
+    build: ./servicio-visitas
+    ports:
+      - "3003:3003"
+    depends_on:
+      - db
+
+  cliente-skynet:
+    build: ./cliente-skynet
+    ports:
+      - "5173:5173"
