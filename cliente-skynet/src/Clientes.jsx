@@ -32,7 +32,7 @@ function Clientes() {
             const token = localStorage.getItem('token');
             if (!token) { navigate('/'); return; }
 
-            const response = await axios.get('http://localhost:3001/api/clientes', {
+            const response = await axios.get('https://clientes-19-26373.up.railway.app/api/clientes', {
                 headers: { Authorization: `Bearer ${token}` }
             });
             setClientes(response.data);
@@ -47,7 +47,7 @@ function Clientes() {
 
         try {
             const token = localStorage.getItem('token');
-            await axios.delete(`http://localhost:3001/api/clientes/${id}`, {
+            await axios.delete(`https://clientes-19-26373.up.railway.app/api/clientes/${id}`, {
                 headers: { Authorization: `Bearer ${token}` }
             });
             alert("Cliente eliminado.");
@@ -88,13 +88,13 @@ function Clientes() {
             
             if (editandoId) {
                 // MODO EDICIÓN (PUT)
-                await axios.put(`http://localhost:3001/api/clientes/${editandoId}`, nuevoCliente, {
+                await axios.put(`https://clientes-19-26373.up.railway.app/api/clientes/${editandoId}`, nuevoCliente, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 alert('¡Cliente actualizado exitosamente!');
             } else {
                 // MODO CREACIÓN (POST)
-                await axios.post('http://localhost:3001/api/clientes', nuevoCliente, {
+                await axios.post('https://clientes-19-26373.up.railway.app/api/clientes', nuevoCliente, {
                     headers: { Authorization: `Bearer ${token}` }
                 });
                 alert('¡Cliente creado exitosamente!');

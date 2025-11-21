@@ -28,7 +28,7 @@ function Usuarios() {
 
     const cargarUsuarios = async () => {
         try {
-            const res = await axios.get('http://localhost:3002/api/usuarios');
+            const res = await axios.get('https://usuarios-19-26373.up.railway.app/api/usuarios');
             setUsuarios(res.data);
         } catch (error) {
             console.error('Error cargando usuarios');
@@ -73,7 +73,7 @@ function Usuarios() {
     const handleSubmit = async (e) => {
         e.preventDefault();
         try {
-            await axios.post('http://localhost:3002/api/auth/registro', nuevoUsuario);
+            await axios.post('https://usuarios-19-26373.up.railway.app/api/auth/registro', nuevoUsuario);
             
             alert(`¡Usuario con rol ${obtenerNombreRol(nuevoUsuario.id_rol)} creado exitosamente!`);
             setMostrarFormulario(false);

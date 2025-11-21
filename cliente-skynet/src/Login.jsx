@@ -14,7 +14,7 @@ function Login() {
 
     try {
       // 1. Hacemos la petición POST a tu servicio de usuarios
-      const response = await axios.post('http://localhost:3002/api/auth/login', {
+      const response = await axios.post('https://usuarios-19-26373.up.railway.app/api/auth/login', {
         email: email,
         password: password
       });

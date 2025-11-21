@@ -88,21 +88,21 @@ function Visitas() {
     // --- CARGAS DE DATOS ---
     const cargarTableroSupervisor = async (token) => {
         try {
-            const res = await axios.get('http://localhost:3003/api/tablero-supervisor', { headers: { Authorization: `Bearer ${token}` } });
+            const res = await axios.get('https://visitas-19-26373.up.railway.app/api/tablero-supervisor', { headers: { Authorization: `Bearer ${token}` } });
             setTableroSupervisor(res.data);
         } catch (error) { console.error("Error tablero"); }
     };
     const cargarListasParaFormulario = async (token) => {
         try {
-            const resC = await axios.get('http://localhost:3001/api/clientes', { headers: { Authorization: `Bearer ${token}` } });
+            const resC = await axios.get('https://clientes-19-26373.up.railway.app/api/clientes', { headers: { Authorization: `Bearer ${token}` } });
             setListaClientes(resC.data);
-            const resU = await axios.get('http://localhost:3002/api/usuarios');
+            const resU = await axios.get('https://usuarios-19-26373.up.railway.app/api/usuarios');
             setListaTecnicos(resU.data.filter(u => u.id_rol == 3));
         } catch (error) { console.error("Error listas"); }
     };
     const cargarMisVisitas = async (token) => {
         try {
-            const res = await axios.get('http://localhost:3003/api/mis-visitas', { headers: { Authorization: `Bearer ${token}` } });
+            const res = await axios.get('https://visitas-19-26373.up.railway.app/api/mis-visitas', { headers: { Authorization: `Bearer ${token}` } });
             setVisitas(res.data);
         } catch (error) { console.error(error); }
     };
@@ -137,7 +137,7 @@ function Visitas() {
     const confirmarCheckInFinal = async () => {
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:3003/api/visitas/${idVisitaCheckIn}/checkin`, 
+            await axios.put(`https://visitas-19-26373.up.railway.app/api/visitas/${idVisitaCheckIn}/checkin`, 
                 { latitud: ubicacionDetectada.lat, longitud: ubicacionDetectada.lng }, 
                 { headers: { Authorization: `Bearer ${token}` } }
             );
@@ -155,7 +155,7 @@ function Visitas() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.put(`http://localhost:3003/api/visitas/${visitaActiva}/checkout`, { reporte_visita: reporte }, { headers: { Authorization: `Bearer ${token}` } });
+            await axios.put(`https://visitas-19-26373.up.railway.app/api/visitas/${visitaActiva}/checkout`, { reporte_visita: reporte }, { headers: { Authorization: `Bearer ${token}` } });
             alert('✅ Visita finalizada.');
             setVisitaActiva(null); 
             setReporte('');
@@ -167,7 +167,7 @@ function Visitas() {
         e.preventDefault();
         try {
             const token = localStorage.getItem('token');
-            await axios.post('http://localhost:3003/api/visitas', 
+            await axios.post('https://visitas-19-26373.up.railway.app/api/visitas', 
                 { id_cliente: idCliente, id_tecnico: idTecnico, fecha_planificada: fecha }, 
                 { headers: { Authorization: `Bearer ${token}` } }
             );
